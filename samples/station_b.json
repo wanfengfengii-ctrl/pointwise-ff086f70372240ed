@@ -1,0 +1,15 @@
+{
+  "site": "乙站",
+  "protocol_id": "耐久台架复核",
+  "device_id": "乙站设备-508",
+  "catalog": {"X": "重复采样"},
+  "states": ["乙站初检", "乙站采样"],
+  "initial": "乙站初检",
+  "transitions": [
+    ["乙站初检", "silent", "乙站采样", null, [1, 2]],
+    ["乙站初检", "public", "乙站采样", "X", [1, 2]],
+    ["乙站采样", "end", null, null, [1, 2]],
+    ["乙站采样", "public", "乙站采样", "X", [1, 2]]
+  ],
+  "trial_runs": [["X"]]
+}

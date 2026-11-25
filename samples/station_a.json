@@ -1,0 +1,24 @@
+{
+  "site": "甲站",
+  "protocol_id": "耐久台架复核",
+  "device_id": "甲站设备-217",
+  "catalog": {"X": "重复采样"},
+  "states": ["甲站初检", "甲站采样"],
+  "initial": "甲站初检",
+  "transitions": [
+    ["甲站初检", "end", null, null, [1, 2]],
+    ["甲站初检", "silent", "甲站采样", null, [1, 2]],
+    ["甲站采样", "end", null, null, [1, 2]],
+    ["甲站采样", "public", "甲站采样", "X", [1, 2]]
+  ],
+  "trial_runs": [[], ["X", "X"], ["Y"]],
+  "correction": {
+    "catalog": {"Y": "检修后确认"},
+    "states": ["甲站换件复检", "甲站检修完成"],
+    "initial": "甲站换件复检",
+    "transitions": [
+      ["甲站换件复检", "public", "甲站检修完成", "Y", [1, 1]],
+      ["甲站检修完成", "end", null, null, [1, 1]]
+    ]
+  }
+}
