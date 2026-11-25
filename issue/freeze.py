@@ -10,10 +10,10 @@ def project_revision(revision: FrozenRevision) -> FixedBody:
     local = {state: index for index, state in enumerate(graph.states)}
     transitions = []
     for edge in graph.transitions:
-        if edge.kind is TransitionKind.SILENT:
+        if edge.kind is TransitionKind.END:
             transitions.append(Transition(local[edge.source], TransitionKind.END, edge.weight))
             continue
-        successor = None if edge.target is None else local[edge.target]
+        successor = local[edge.target]
         transitions.append(Transition(local[edge.source], edge.kind, edge.weight, successor, edge.code))
     return FixedBody(TransitionGraph(tuple(range(len(local))), local[graph.initial], tuple(transitions)))
 
